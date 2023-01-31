@@ -83,7 +83,7 @@ function keyPressed() {
       setTimeout(() => {
         collectingData = false;
         console.log("collecting = ", collectingData);
-      }, 5000); // reset collectingData after 5 seconds
+      }, 10000); // reset collectingData after 10 seconds
 
       /* During the interval of 5 seconds 
                 - key points will be captured
