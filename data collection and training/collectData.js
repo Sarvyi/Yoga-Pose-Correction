@@ -1,13 +1,13 @@
 let video;
 let pose;
 let skeleton;
-let poses = ["L", "R", "B", "N"];
+let poses = ["MOUNTAIN", "GODDESS"];
 let targetPose;
 let poseNet;
 let nn;
 let collectingData = false;
 
-const NUM_OF_POSES = 5;
+const NUM_OF_POSES = 2;
 const NUM_OF_BODY_POS = 17;
 
 function setup() {
@@ -40,10 +40,11 @@ function modelLoaded() {
 
 function getPoses(poses) {
   if (poses.length > 0) {
+    
     pose = poses[0].pose;
     skeleton = poses[0].skeleton;
-    //   console.log(pose);
-    //   console.log(skeleton);
+    // console.log(pose);
+    // console.log(skeleton);
 
     // make data
     let keypoints = pose.keypoints;
@@ -77,6 +78,7 @@ function keyPressed() {
   // set target pose and collecting state
   else {
     targetPose = poses[parseInt(key)];
+    console.log(targetPose);
     setTimeout(() => {
       collectingData = true;
       console.log("collecting = ", collectingData);
@@ -94,8 +96,10 @@ function keyPressed() {
 }
 
 function draw() {
-  const flippedVideo = ml5.flipImage(video);
-  image(flippedVideo, 0, 0, width, height);
+  // const flippedVideo = ml5.flipImage(video);
+  translate(video.width, 0);
+  scale(-1, 1);
+  image(video, 0, 0, video.width, video.height);
 
   // draw skeleton
   if (pose) {

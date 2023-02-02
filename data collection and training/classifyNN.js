@@ -1,12 +1,12 @@
 let video;
 let pose;
 let skeleton;
-let poses = ["L", "R", "B", "N"];
+let poses = ["MOUNTAIN", "GODDESS"];
 let poseLabel;
 let poseNet;
 let nn;
 const DATA_PATH = "data.json";
-const NUM_OF_POSES = 5;
+const NUM_OF_POSES = 2;
 const NUM_OF_BODY_POS = 17;
 
 // Loading the data before
@@ -73,7 +73,8 @@ function classifyPose() {
 }
 
 function gotResult(error, results) {
-  if (results[0].confidence > 0.7) {
+
+  if (results[0].confidence > 0.99) {
     poseLabel = results[0].label;
     /*
     // if (results[0].label == "Pose0") {
@@ -103,8 +104,10 @@ function getPoses(poses) {
 }
 
 function draw() {
-  const flippedVideo = ml5.flipImage(video);
-  image(flippedVideo, 0, 0, width, height);
+  // const flippedVideo = ml5.flipImage(video);
+  translate(video.width, 0);
+  scale(-1, 1);
+  image(video, 0, 0, video.width, video.height);
 
   // draw skeleton
   if (pose) {
