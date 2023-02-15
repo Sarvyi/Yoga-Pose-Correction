@@ -1,7 +1,8 @@
 let video;
 let pose;
 let skeleton;
-let pose_names = ["A", "B"];
+// let pose_names = ["MOUNTAIN", "GODDESS", "GARLAND", "PLANK", "COBRA"];
+let pose_names = ["COBRA"];
 // let poses = [];
 let targetPose;
 let poseNet;
@@ -72,27 +73,31 @@ function getPoses(poses) {
 
 function keyPressed() {
   // save data
-  console.log(key);
+  // console.log(key);
   if (key == "s") {
     knn.save("data.json");
   }
 
   // set target pose and collecting state
   else {
-    targetPose = pose_names[parseInt(key)];
-    setTimeout(() => {
-      collectingData = true;
-      console.log("collecting = ", collectingData);
+    if(parseInt(key)>=0 && parseInt(key)<4)
+    {
+      targetPose = pose_names[parseInt(key)];
       setTimeout(() => {
-        collectingData = false;
+        collectingData = true;
         console.log("collecting = ", collectingData);
-      }, 10000); // reset collectingData after 10 seconds
+        console.log(targetPose)
+        setTimeout(() => {
+          collectingData = false;
+          console.log("collecting = ", collectingData);
+        }, 10000); // reset collectingData after 10 seconds
 
-      /* During the interval of 5 seconds 
-                - key points will be captured
-                - converted to array of size 34 (x and y of 17 points)
-                - add the array and target to neural network */
-    }, 10000); // wait for 10 sec then set collectingData
+        /* During the interval of 5 seconds 
+                  - key points will be captured
+                  - converted to array of size 34 (x and y of 17 points)
+                  - add the array and target to neural network */
+      }, 10000); // wait for 10 sec then set collectingData
+    }
   }
 }
 

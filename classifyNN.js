@@ -1,11 +1,18 @@
 let video;
 let pose;
 let skeleton;
-let pose_names = ["A", "B"];
+let pose_names = ["MOUNTAIN", "GODDESS", "GARLAND", "PLANK"];
 let poseLabel;
 let poseNet;
 let knn;
 const DATA_PATH = "./data.json";
+
+let maxKneeFlexion = 180;
+let maxHipFlexion = 180;
+let maxDorsiflexion = 180;
+let maxTrunkLean = 180;
+
+let knee, hip, ankle, kneeFlexion, dorsiflexion, hipFlexion, shoulder, anKnee, sHip, trunkLean;
 
 // Loading the data before
 
@@ -79,10 +86,79 @@ function getPoses(poses) {
   if (poses.length > 0) {
     pose = poses[0].pose;
     skeleton = poses[0].skeleton;
-    //   console.log(pose);
-    //   console.log(skeleton);
-  }
+    
+} 
 }
+
+function getAngle(poses) 
+{
+			switch (side) {
+				case 'left':
+					knee = poses[0].pose.leftKnee;
+					hip = poses[0].pose.leftHip;
+					ankle = poses[0].pose.leftAnkle;
+					shoulder = poses[0].pose.leftShoulder;
+					anKnee = { x: knee.x, y: ankle.y };
+					sHip = { x: shoulder.x, y: hip.y };
+					kneeFlexion =
+						(Math.atan2(ankle.y - knee.y, ankle.x - knee.x) - Math.atan2(hip.y - knee.y, hip.x - knee.x)) *
+						(180 / Math.PI);
+					hipFlexion =
+						360 -
+						(Math.atan2(knee.y - hip.y, knee.x - hip.x) -
+							Math.atan2(shoulder.y - hip.y, shoulder.x - hip.x)) *
+							(180 / Math.PI);
+					dorsiflexion =
+						360 -
+						(Math.atan2(anKnee.y - ankle.y, anKnee.x - ankle.x) -
+							Math.atan2(knee.y - ankle.y, knee.x - ankle.x)) *
+							(180 / Math.PI);
+					trunkLean =
+						360 -
+						(Math.atan2(sHip.y - hip.y, sHip.x - hip.x) -
+							Math.atan2(shoulder.y - hip.y, shoulder.x - hip.x)) *
+							(180 / Math.PI);
+					break;
+				case 'right':
+					knee = poses[0].pose.rightKnee;
+					hip = poses[0].pose.rightHip;
+					ankle = poses[0].pose.rightAnkle;
+					shoulder = poses[0].pose.rightShoulder;
+					anKnee = { x: knee.x, y: ankle.y };
+					sHip = { x: shoulder.x, y: hip.y };
+					kneeFlexion =
+						360 -
+						(Math.atan2(ankle.y - knee.y, ankle.x - knee.x) - Math.atan2(hip.y - knee.y, hip.x - knee.x)) *
+							(180 / Math.PI);
+					hipFlexion =
+						(Math.atan2(knee.y - hip.y, knee.x - hip.x) -
+							Math.atan2(shoulder.y - hip.y, shoulder.x - hip.x)) *
+						(180 / Math.PI);
+					dorsiflexion =
+						(Math.atan2(anKnee.y - ankle.y, anKnee.x - ankle.x) -
+							Math.atan2(knee.y - ankle.y, knee.x - ankle.x)) *
+						(180 / Math.PI);
+					trunkLean =
+						(Math.atan2(sHip.y - hip.y, sHip.x - hip.x) -
+							Math.atan2(shoulder.y - hip.y, shoulder.x - hip.x)) *
+						(180 / Math.PI);
+			}
+}
+
+function switchSides() {
+	switch (side) {
+		case 'left':
+			side = 'right';
+			select('#sideInstruction').html('right');
+			resetMax();
+			break;
+		case 'right':
+			side = 'left';
+			select('#sideInstruction').html('left');
+			resetMax();
+	}
+}
+
 
 function drawKeypoints() {
   if(pose)
@@ -127,12 +203,29 @@ function draw() {
   textSize(64);
   //text(classificationResult, width/2, height/2);
   
-  if (poseLabel == "A") {
-    text("A", width/2, height/2);
+  if (poseLabel == "MOUNTAIN") {
+    text("MOUNTAIN", width/2, height/2);
     
-  } else if (poseLabel == "B") {
-    text("B", width/2, height/2);
+  } 
+  else if (poseLabel == "GODDESS") {
+    text("GODDESS", width/2, height/2);
     
+  }
+  else if (poseLabel == "GARLAND") {
+    text("GARLAND", width/2, height/2);
+    
+  }
+  else if (poseLabel == "PLANK") {
+    text("PLANK", width/2, height/2);
+    
+  }
+  // else if (poseLabel == "COBRA") {
+  //   text("COBRA", width/2, height/2);
+    
+  // }
+  else 
+  {
+    text("INCORRECT POSE", width/2, height/2);
   }
   
   // //Super hacky way to get rid of errors - make this better!
