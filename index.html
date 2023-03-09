@@ -3,7 +3,7 @@
   <title>Neural Network</title>
 
   <style>
-    body{
+    .top-section{
       display: flex;
       flex-direction: row;
     }
@@ -20,13 +20,14 @@
   <!-- <script src="trainNN.js"></script> -->
   <script src="classify.js"></script>
   <body>
-    <span class="pose_selection">
-      <label for="poses_dropdown">Choose your pose</label>
-      <select name="poses_dropdown" id="poses_dropdown">
-        <option value="none" selected="selected">--Select--</option>
-      </select>
-    </span>
-    
+    <div class="top-section">
+      <span class="pose_selection">
+        <label for="poses_dropdown">Choose your pose</label>
+        <select name="poses_dropdown" id="poses_dropdown">
+          <option value="none" selected="selected">--Select--</option>
+        </select>
+      </span>
+    </div>
     <div>
       Message: <span id="message">
         Select your pose from the dropdown menu

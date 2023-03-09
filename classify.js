@@ -56,7 +56,8 @@ function setup() {
 
 function networkLoaded() {
   console.log("KNN loaded!");
-  classifyPose();
+  correction();
+  // classifyPose();
 }
 
 // call back function
@@ -89,13 +90,171 @@ function display(msg) {
 }
 
 function in_range(low, val, high) {
-  if (val < low) {
+  if (val > low && val < high) {
+    return 0;
+  }
+  else if (val < low) {
     return -1;
   } else if (val > high) {
     return 1;
-  } else {
-    return 0;
   }
+}
+
+
+function correction(params) {
+  // classify pose
+  if (pose) {
+    const poseArray = pose.keypoints.map((p) => [
+      p.score,
+      p.position.x,
+      p.position.y,
+    ]);
+    // knn.addExample(poseArray, targetPose);
+    setInterval(() => {
+      // console.log(angles);
+      // knn.classify(poseArray, gotResult);
+      if (selected_pose != "none") {
+        let leftKHH_range,
+          rightKHH_range,
+          leftWEH_range,
+          rightWEH_range,
+          leftWES_range,
+          rightWES_range,
+          leftESH_range,
+          rightESH_range,
+          leftAKH_range,
+          rightAKH_range,
+          leftSEW_range,
+          rightSEW_range;
+
+        switch (selected_pose) {
+          case "MOUNTAIN":
+            leftKHH_range = in_range(85, angles.left.KHH, 90);
+            rightKHH_range = in_range(85, angles.right.KHH, 90);
+            leftWEH_range = in_range(25, angles.left.WEH, 30);
+            rightWEH_range = in_range(25, angles.right.WEH, 30);
+
+            if (leftKHH_range == -1 || rightKHH_range == -1) {
+              display("Join your both legs");
+            } else if (leftKHH_range == 0 || rightKHH_range == 0) {
+              display("Legs perfect");
+            } else {
+              display("Join your both legs");
+            }
+
+            if (leftWEH_range == -1 || rightWEH_range == -1) {
+              display("Spread your arms a little bit");
+            } else if (leftWEH_range == 0 || rightQEH_range == 0) {
+              display("Arms perfect");
+            } else {
+              display("Let your arms fall next to your waist");
+            }
+            break;
+
+          case "GODDESS":
+            leftWES_range = in_range(85, angles.left.WES, 90);
+            rightWES_range = in_range(85, angles.right.WES, 90);
+            leftESH_range = in_range(85, angles.left.ESH, 90);
+            rightESH_range = in_range(85, angles.right.ESH, 90);
+            leftAKH_range = in_range(100, angles.left.AKH, 110);
+            rightAKH_range = in_range(100, angles.right.AKH, 110);
+
+            if (leftWES_range == -1 || leftWES_range == 1) {
+              display("Your left forearm should point upwards");
+            } else if (rightWES_range == -1 || rightWES_RANGE == 1) {
+              display("Your right forearm should point upwards");
+            } else if (leftWES_range == 0 || rightWES_range == 0) {
+              display("");
+            }
+
+            if (leftESH_range == -1) {
+              display("Raise your left upper limb a little bit");
+            } else if (rightESH_range == -1) {
+              display("Raise your right upper limb a little bit");
+            } else if (leftESH_range == 0 || rightESH_range == 0) {
+              display("");
+            } else if (leftESH_range == 1) {
+              display("Lower uour left upper limb a little bit");
+            } else if (rightESH_range == 1) {
+              display("Lower your right upper limb a little bit");
+            }
+
+            if (leftAKH_range == -1) {
+              display("Widen your left leg by keeping shin straight");
+            } else if (rightAKH_range == -1) {
+              display("Widen your right leg by keeping shin straight");
+            } else if (leftAKH_range == 0 || rightAKH_range == 0) {
+              display("");
+            } else if (leftAKH_range == 1) {
+              display("Contract your left leg by keeping shin straight");
+            } else if (rightAKH_range == 1) {
+              display("Contract your right leg by keeping shin straight");
+            }
+            break;
+
+          case "GARLAND":
+            leftAKH_range = in_range(30, angles.left.AKH, 40);
+            rightAKH_range = in_range(30, angles.right.AKH, 40);
+
+            if (leftAKH_range == -1) {
+              display("Widen your left leg");
+            } else if (rightAKH_range == -1) {
+              display("Widen your right leg");
+            } else if (leftAKH_range == 0 || rightAKH_range == 0) {
+              display("");
+            } else if (leftAKH_range == 1) {
+              display("Contract your left leg");
+            } else if (rightAKH_range == 1) {
+              display("Contract your right leg");
+            }
+            break;
+
+          case "PLANK":
+            leftAKH_range = in_range(175, angles.left.AKH, 180);
+            rightAKH_range = in_range(175, angles.right.AKH, 180);
+            leftESH_range = in_range(70, angles.left.ESH, 80);
+            rightESH_range = in_range(70, angles.right.ESH, 80);
+            leftSEW_range = in_range(175, angles.left.SEW, 180);
+            rightSEW_range = in_range(175, angles.right.SEW, 180);
+
+            if (
+              leftAKH_range == -1 ||
+              rightAKH_range == -1 ||
+              leftAKH_range == 1 ||
+              rightAKH_range == 1
+            ) {
+              display(
+                "Your back should be straight and parallel to the ground"
+              );
+            } else {
+              display("");
+            }
+
+            if (leftESH_range == -1 || rightESH_range == -1) {
+              display("Take your arms forward");
+            } else if (leftESH_range == 1 || rightESH_range == 1) {
+              display("Take your arms backwards");
+            } else {
+              display("");
+            }
+
+            if (
+              leftSEW_range == -1 ||
+              rightSEW_range == -1 ||
+              leftSEW_range == 1 ||
+              rightEW_range == 1
+            ) {
+              display("Your arms should be straight");
+            } else {
+              display("");
+            }
+            break;
+        }
+      }
+    }, 3000);
+  } else {
+    setTimeout(classifyPose, 1000);
+}
 }
 
 function gotResult(error, results) {
@@ -103,6 +262,7 @@ function gotResult(error, results) {
     console.log(results);
     poseLabel = pose_names[parseInt(results.label)];
     // working with angles...
+    /*
     if (poseLabel == selected_pose) {
       let leftKHH_range,rightKHH_range,
           leftWEH_range,rightWEH_range,
@@ -233,6 +393,7 @@ function gotResult(error, results) {
           break;
       }
     }
+    */
     classifyPose();
   }
 }
