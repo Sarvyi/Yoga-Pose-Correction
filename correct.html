@@ -1,0 +1,37 @@
+<html>
+  <meta charset="UTF-8" />
+  <title>Neural Network</title>
+
+  <style>
+    .top-section{
+      display: flex;
+      flex-direction: row;
+    }
+    .pose_selection{
+      margin: 1em;
+      padding: 0.5em;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <!-- <script src="collectData.js"></script> -->
+  <!-- <script src="trainNN.js"></script> -->
+  <script src="correct.js"></script>
+  <body>
+    <div class="top-section">
+      <span class="pose_selection">
+        <label for="poses_dropdown">Choose your pose</label>
+        <select name="poses_dropdown" id="poses_dropdown">
+          <option value="none" selected="selected">--Select--</option>
+        </select>
+      </span>
+    </div>
+    <div>
+      Message: <span id="message">
+        Select your pose from the dropdown menu
+      </span>
+    </div>
+  </body>
+</html>
