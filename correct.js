@@ -33,7 +33,10 @@ function setup() {
 
   // on() function is called on seeing a pose.
   // the object of bodypoints is given to callback function getPoses
-  poseNet.on("pose", getPoses);
+  setInterval(() => {
+    poseNet.on("pose", getPoses);
+  }, 3000);
+  
   // getPoses initializes pose and skeleton variables
 }
 
