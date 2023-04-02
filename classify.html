@@ -1,15 +1,38 @@
 <html>
   <meta charset="UTF-8" />
   <title>Neural Network</title>
-
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  
   <style>
-    .top-section{
+    body{
+      font-family: 'Poppins', sans-serif;
+      background-image: linear-gradient(-45deg, #fae6e6 0%, #cafaf9 60%);
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      align-items: center;
+    }
+    .top-section{
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2em;
     }
     .pose_selection{
-      margin: 1em;
-      padding: 0.5em;
+      font-size: 1.5em;
+      padding: 0 0.5em;
+    }
+    .pose_selection select{
+      /* border-bottom: 1px solid red; */
+      font-size: 0.75em;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      background-color: rgba(0,0,0,0.1);
+    }
+    .pose_dropdown *{
+      outline: 0px;
+      background-color: transparent;
     }
   </style>
 
@@ -20,13 +43,15 @@
   <!-- <script src="trainNN.js"></script> -->
   <script src="classify.js"></script>
   <body>
+    <h1 align="center">Yoga Pose KNN Classifier</h1>
     <div class="top-section">
-      <span class="pose_selection">
-        <label for="poses_dropdown">Choose your pose</label>
+      <div class="pose_selection">
+        <label for="poses_dropdown">I want to practice</label>
         <select name="poses_dropdown" id="poses_dropdown">
           <option value="none" selected="selected">--Select--</option>
         </select>
-      </span>
+        pose
+      </div>
     </div>
   </body>
 </html>
