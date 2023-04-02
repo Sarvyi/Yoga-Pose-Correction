@@ -1,8 +1,159 @@
 <html>
   <meta charset="UTF-8" />
   <title>Neural Network</title>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+  <style>
+    body{
+      font-family: 'Poppins', sans-serif;
+      background-image: linear-gradient(-45deg, #fae6e6 0%, #cafaf9 60%);
+      
+      /* opacity: 0.5; */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cover{
+      z-index: -1;
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: 100vw;
+      background-image: url("yoga_cover.png");
+      opacity: 0.5;
+      background-repeat: no-repeat;
+      background-size: 50%;
+      background-position-x: 50%;
+      background-position-y: 80%;
+    }
+
+    .main{
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: space-around; */
+    }
+
+    .info{
+      height: 25em;
+      padding: 20px;
+      
+    }
+
+    .gh-icon{
+      background: -moz-linear-gradient(right, #1945c2 0%, #9805b7 100%);
+      background: -webkit-linear-gradient(right,#1945c2 0%, #9805b7 100%);
+      background: linear-gradient(to right, #1945c2 0%, #9805b7 100%);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+    }
+    button {
+      font-size: 1.5em;
+      padding: 10px;
+      margin: 0 2.5em;
+
+      height: auto;
+      border: none;
+      cursor: pointer;
+      
+      border-radius: 10px;
+
+      /* glassmorphic bg start */
+      background: rgba( 255, 255, 255, 0.25 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      backdrop-filter: blur( 1px );
+      -webkit-backdrop-filter: blur( 4px );
+      border-radius: 10px;
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+      /* end */
+
+      -webkit-transition: color 0.5s, background-color 0.5s;
+      -moz-transition: color 0.5s, background-color 0.5s;
+      -o-transition: color 0.5s, background-color 0.5s;
+    }
+    
+    button:hover {
+        color: black;
+        background-color: #c2daf9;
+    }
+
+    .footer{
+      padding: 5px 0;
+      text-align: center;
+      width: 100vw;
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+      /* border: 1px solid black; */
+      font-size: 1.5em;
+      position: fixed;
+      bottom: 0em;
+    }
+
+    .footer > *{
+      margin: 0.2em;
+    }
+  </style>
   <body>
-    <button><a href="./classify.html">Classify</a></button>
-    <button><a href="./correct.html">Correct</a></button>
+    <div class="cover"></div>
+    <header align="center">
+      <h1>Yoga Pose Correction using Deep Learning</h1>
+    </header>
+
+    <div class="main">
+      <div class="info" >
+        <h3> Two main parts of the project are: </h3>
+        <ul style="list-style-type: none; ">
+          <li>
+            <details>
+              <summary>Classifier</summary>
+              <p>This part of the project uses a KNN Classifier to classify the yoga poses. <br>
+                Here we have trained the classified on a limited number of yoga poses. The poses that we have focued on are 
+                <ul>
+                  <li>Mountain Pose</li>
+                  <li>Goddess Pose</li>
+                  <li>Garland Pose</li>
+                  <li>Plank Pose</li>
+                </ul>
+              </p>
+            </details>
+          </li>
+  
+          <li>
+            <details>
+              <summary> Correction system </summary>
+              <p>
+                The Correction system uses angles between specific joints or body points, which are calculated from the body points given by posenet model. The algithm checks if the angles lie in the permisible range. If the practitioner performes yoga incorrectly then this is found from angles which are out of defined range and user is prompted accordinglt to correct his/her pose.
+              </p>
+            </details>
+            </li>
+        </ul>
+      </div>
+
+
+      <div class="buttons">
+        <button class="classify"> <a target="_blank" href="./classify.html">KNN Classifier Module</a> <i style="font-size: 0.75em" class="fa fa-external-link" aria-hidden="true"></i></button>
+        <button class="correct"><a target="_blank" href="./correct.html">Yoga Pose Correction Module</a> <i style="font-size: 0.75em" class="fa fa-external-link" aria-hidden="true"></i></button>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <span class="gh-icon">
+        <i id="" class="fa fa-github-square fa-1x gh-icon"></i>
+        Developed by:
+      </span>
+        <a href="https://www.github.com/bootsnipp">Aditya Potdar, </a>
+        <a href="https://github.com/">Sarvagya Singh, </a>
+        <a href="https://github.com/">Jay Bhanushali </a>
+    </div>
   </body>
 </html>
