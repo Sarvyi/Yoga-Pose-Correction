@@ -5,6 +5,7 @@ let pose_names = ["MOUNTAIN", "GODDESS", "GARLAND", "PLANK"];
 let angles;
 let posesDropdown;
 let msgSpan;
+let tts_msg;
 let selected_pose;
 let poseNet;
 
@@ -17,6 +18,22 @@ function setup() {
   // create options of poses in dropdown
   posesDropdown = document.getElementById("poses_dropdown");
   msgSpan = document.getElementById("message");
+  
+  // text to speech setup check
+  if ("speechSynthesis" in window) {
+    // Speech Synthesis supported 🎉
+    tts_msg = new SpeechSynthesisUtterance();
+    alert("Text to Speech setup complete!");
+    console.log(speechSynthesis.getVoices());
+    voices = speechSynthesis.getVoices();
+    if (voices.length){ // set voice to Heera if available
+      tts_msg.voice = voices[2]; // Microsoft Heera
+      alert(tts_msg.voice);
+    }
+  } else {
+    // Speech Synthesis Not Supported 😣
+    alert("Sorry, your browser doesn't support text to speech!");
+  }
 
   pose_names.forEach((name) => {
     posesDropdown.options[posesDropdown.options.length] = new Option(
@@ -24,6 +41,9 @@ function setup() {
       name
     );
   });
+
+  tts_msg.text = "Select your pose from the dropdown menu";
+  window.speechSynthesis.speak(tts_msg); 
 
   selected_pose = posesDropdown.value;
 
@@ -36,7 +56,7 @@ function setup() {
   setInterval(() => {
     poseNet.on("pose", getPoses);
   }, 3000);
-  
+
   // getPoses initializes pose and skeleton variables
 }
 
@@ -50,6 +70,8 @@ function modelLoaded() {
 
 function display(msg) {
   msgSpan.innerHTML = msg;
+  tts_msg.text = msg;
+  window.speechSynthesis.speak(tts_msg); 
 }
 
 function in_range(low, val, high) {
