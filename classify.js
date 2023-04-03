@@ -14,7 +14,7 @@ const DATA_PATH = "./data.json";
 // Loading the data before
 
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(640, 500);
   video = createCapture(VIDEO);
   video.size(640, 480);
   video.hide();
@@ -133,24 +133,24 @@ function draw() {
     drawSkeleton();
 
     fill(0, 255, 0);
-    textSize(64);
+    textSize(30);
     //text(classificationResult, width/2, height/2);
 
     if (poseLabel == "MOUNTAIN") {
-      text("MOUNTAIN", width / 2, height / 2);
+      text("MOUNTAIN POSE", width / 4, height - 10);
     } else if (poseLabel == "GODDESS") {
-      text("GODDESS", width / 2, height / 2);
+      text("GODDESS POSE", width / 4, height - 10);
     } else if (poseLabel == "GARLAND") {
-      text("GARLAND", width / 2, height / 2);
+      text("GARLAND POSE", width / 4, height - 10);
     } else if (poseLabel == "PLANK") {
-      text("PLANK", width / 2, height / 2);
+      text("PLANK POSE", width / 4, height - 10);
     }
     // else if (poseLabel == "COBRA") {
     //   text("COBRA", width/2, height/2);
 
     // }
     else {
-      text("INCORRECT POSE", width / 2, height / 2);
+      text("INCORRECT POSE", width / 4, height - 10);
     }
   }
   selected_pose = posesDropdown.value;
