@@ -26,6 +26,10 @@
     h1{
       margin: 0.5em;
     }
+
+    h3{
+      margin-bottom: 0.5em;
+    }
     .cover{
       z-index: -1;
       position: fixed;
@@ -54,9 +58,15 @@
 
     .info{
       height: 20em;
-      padding: 20px;
+      padding: 10px;
       font-size: 1em;
       overflow-y: scroll;
+    }
+
+    .info>ul{
+      list-style-type: none;
+      padding-inline-start: 20px;
+      margin-block-start: 0.5em;
     }
 
     /* Customizing the scrollbar */
@@ -157,8 +167,11 @@
     }   
 
     @media only screen and (max-width: 650px) {
+      .cover{
+        background-position-y: 45%;
+      }
       .main{
-        width: 97%;
+        width: 100%;
       }
       .info{
         height: 30vh;
@@ -184,7 +197,7 @@
     <div class="main">
       <div class="info scroll" >
         <h3> Two main parts of the project are: </h3>
-        <ul style="list-style-type: none; ">
+        <ul>
           <li>
             <details>
               <summary>Classifier</summary>
