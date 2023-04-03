@@ -1,5 +1,6 @@
 <html>
   <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
   <title>Neural Network</title>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,12 @@
       align-items: center;
 
 
+    }
+    .logo{
+      margin: 1em 0;
+    }
+    h1{
+      margin: 0.5em;
     }
     .cover{
       z-index: -1;
@@ -46,18 +53,19 @@
     }
 
     .info{
-      height: 15em;
+      height: 20em;
       padding: 20px;
-      font-size: 1.5em;
+      font-size: 1em;
       overflow-y: scroll;
     }
+
     /* Customizing the scrollbar */
-    ::-webkit-scrollbar {
-      width: 15px;
+    ::-webkit-scrollbar{
+      width: 7.5px;
     }
 
     /* Track */
-    ::-webkit-scrollbar-track {
+    ::-webkit-scrollbar-track{
       box-shadow: inset 0 0 5px grey; 
       border-radius: 10px;
     }
@@ -77,6 +85,11 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #278489; 
     }
+
+    .scroll{
+      scrollbar-color: rgba(126, 199, 241, 1) grey;
+    }
+
     .gh-icon{
       background: -moz-linear-gradient(right, #1945c2 0%, #9805b7 100%);
       background: -webkit-linear-gradient(right,#1945c2 0%, #9805b7 100%);
@@ -90,7 +103,7 @@
     .buttons{
       display:flex;
       justify-content:center;
-      /* margin-bottom: em; */
+      margin-top: 1em;
     }
 
 
@@ -130,7 +143,7 @@
       width: 100vw;
       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
       /* border: 1px solid black; */
-      font-size: 1.5em;
+      font-size: 1.25em;
       position: fixed;
       bottom: 0em;
     }
@@ -138,32 +151,38 @@
     .footer > *{
       margin: 0.2em;
     }
-    .spaces{
-      display: none;
-    }
 
     header {
       display: flex;
     }   
-/* If the screen size is 400px or less */
-    @media (max-width: 500px) {
-      /* div.info{
-        height: 25vh;
-      } */
-      .spaces {
-        display: block;
+
+    @media only screen and (max-width: 650px) {
+      .main{
+        width: 97%;
+      }
+      .info{
+        height: 30vh;
+      }
+      button{
+        margin: 0 0.5em;
+      }
+      h1{
+        font-size:1.4em;
+      }
+      .footer, button{
+        font-size: 1em;
       }
     }
   </style>
   <body>
     <div class="cover"></div>
     <header align="center">
-      <img src="yoga_logo_rm_bg.png" alt="logo_yoga" height="60">
+      <img class="logo" src="yoga_logo_rm_bg.png" alt="logo_yoga" height="60">
       <h1>&nbsp;&nbsp; <u>Yoga Pose Correction using Deep Learning</u> </h1>
     </header>
 
     <div class="main">
-      <div class="info" >
+      <div class="info scroll" >
         <h3> Two main parts of the project are: </h3>
         <ul style="list-style-type: none; ">
           <li>
@@ -190,20 +209,6 @@
             </details>
             </li>
         </ul>
-      </div>
-
-      <div class="spaces">
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <!-- <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br> -->
       </div>
 
       <div class="buttons">
