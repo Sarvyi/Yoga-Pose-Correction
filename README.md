@@ -14,5 +14,5 @@ Yoga is practiced by people throughout. Many people are participating on their o
 * 💻System Overview : <br>
 <img  src="https://lh5.googleusercontent.com/R63DlMkbA1z74bqk8flA4LxWTOz09Ieme-MYYnmx4ay8I3YSkNMpf5DjhgqjHguN3lh4d88D7u8xwCVQjUXsZM3dQW8sV0p9o_CtsVgI5nZ4x_oBhJUTza4ACfadXGyDofl7X8Gbo8eDfgIub2XIHOI"></img>
 
-* 🔗Link to the Research paper : [🔥paper][SNCS-S-23-02230.pdf](https://docs.google.com/document/d/e/2PACX-1vS1GsLqQJC-B7WuLUTy1KiT4-IGyqOC3Vj9R_BTXcNITbD8wlakO1bSbIkdibbTjl2X-m_avosWUC2a/pub)
+* 🔗Link to the Research paper : [🔥paper][SNCS-S-23-02230.pdf](https://docs.google.com/document/d/e/2PACX-1vS1GsLqQJC-B7WuLUTy1KiT4-IGyqOC3Vj9R_BTXcNITbD8wlakO1bSbIkdibbTjl2X-m_avosWUC2a/pub) <br>
 👉[Download](https://github.com/Sarvyi/Yoga-Pose-Correction/files/11187574/SNCS-S-23-02230.pdf) 
