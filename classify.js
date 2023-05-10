@@ -23,12 +23,12 @@ function setup() {
   // create options of poses in dropdown
   posesDropdown = document.getElementById("poses_dropdown");
 
-  pose_names.forEach((name) => {
-    posesDropdown.options[posesDropdown.options.length] = new Option(
-      name,
-      name
-    );
-  });
+  // pose_names.forEach((name) => {
+  //   posesDropdown.options[posesDropdown.options.length] = new Option(
+  //     name,
+  //     name
+  //   );
+  // });
 
   selected_pose = posesDropdown.value;
 
