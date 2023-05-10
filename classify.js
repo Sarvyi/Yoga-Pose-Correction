@@ -1,8 +1,8 @@
 let video;
 let pose;
 let skeleton;
-// let pose_names = ["MOUNTAIN", "GODDESS", "GARLAND", "PLANK"];
-let pose_names = ["START"];
+let pose_names = ["MOUNTAIN", "GODDESS", "GARLAND", "PLANK"];
+// let pose_names = ["START"];
 let posesDropdown;
 let selected_pose;
 let poseLabel;
