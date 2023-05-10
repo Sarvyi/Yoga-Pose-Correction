@@ -34,6 +34,20 @@
       outline: 0px;
       background-color: transparent;
     }
+
+    #imager {
+      display:flex;
+      flex-direction: row;
+
+      /* width: 200px;  */
+      /* margin: auto; */
+      /* padding: 10px; */
+      /* height:  */
+    }
+    img {
+      padding-right: 20px;
+      /* width: ; */
+    }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
@@ -44,15 +58,25 @@
   <script src="classify.js"></script>
   <body>
     <h1 align="center">Yoga Pose KNN Classifier</h1>
+    
     <div class="top-section">
       <div class="pose_selection">
         <label for="poses_dropdown"></label>
-        <select name="poses_dropdown" id="poses_dropdown">
-          <option value="none" selected="selected">--Select--</option>/
-          <option value="start" selected="selected">start</option>
+        <select name="poses_dropdown" id="poses_dropdown" onchange="image_maker()">
+          <option value="none" selected="selected">--Select--</option>
+          <option value="MOUNTAIN">MOUNTAIN</option>
+          <option value="GARLAND">GARLAND</option>
+          <option value="PLANK">PLANK</option>
+          <option value="GODDESS">GODDESS</option>
+          <!-- <option value="start" selected="selected">start</option> -->
+
         </select>
         pose
       </div>
+
+    </div>
+    <div id="imager">
+      <img id="pose_img" src=""/>
     </div>
   </body>
 </html>

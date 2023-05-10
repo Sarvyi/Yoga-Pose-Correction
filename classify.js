@@ -2,6 +2,7 @@ let video;
 let pose;
 let skeleton;
 let pose_names = ["MOUNTAIN", "GODDESS", "GARLAND", "PLANK"];
+let pose_images = {"MOUNTAIN" :"image1.png", "GODDESS": "image2.jpeg", "GARLAND": "image3.jpg", "PLANK": "image4.jpg"};
 // let pose_names = ["START"];
 let posesDropdown;
 let selected_pose;
@@ -15,7 +16,8 @@ const DATA_PATH = "./data.json";
 // Loading the data before
 
 function setup() {
-  createCanvas(640, 500);
+  let cv = createCanvas(640, 500); 
+  cv.parent("imager");
   video = createCapture(VIDEO);
   video.size(640, 480);
   video.hide();
@@ -23,15 +25,13 @@ function setup() {
   // create options of poses in dropdown
   posesDropdown = document.getElementById("poses_dropdown");
 
-  // pose_names.forEach((name) => {
+  // pose_names.forEach((name) => { 
+    
   //   posesDropdown.options[posesDropdown.options.length] = new Option(
   //     name,
   //     name
   //   );
   // });
-
-  selected_pose = posesDropdown.value;
-
   // setup posenet model
   // posenet requires input image/video and a callback function
   poseNet = ml5.poseNet(video, modelLoaded);
@@ -46,6 +46,14 @@ function setup() {
   // load the saved model
 }
 
+function image_maker(){
+  let posesDropdownVal = document.getElementById("poses_dropdown").value;
+  // console.log(typeof(posesDropdownVal))
+  img_path = pose_images[posesDropdownVal];
+  // console.log(pose_val)
+  document.getElementById("pose_img").src=img_path;
+}
+
 function networkLoaded() {
   console.log("KNN loaded!");
   classifyPose();
@@ -58,6 +66,7 @@ function modelLoaded() {
 }
 
 function classifyPose() {
+
   // classify pose
   if (pose) {
     const poseArray = pose.keypoints.map((p) => [
@@ -76,7 +85,7 @@ function classifyPose() {
 
 function gotResult(error, results) {
   if (results) {
-    console.log(results);
+    // console.log(results);
     poseLabel = pose_names[parseInt(results.label)];
     classifyPose();
   }
@@ -136,23 +145,25 @@ function draw() {
     fill(0, 255, 0);
     textSize(30);
     //text(classificationResult, width/2, height/2);
+    if (posesDropdown.value != poseLabel) 
+    {
+      text("INCORRECT POSE", width / 4, height - 10);
+    } else{
 
-    if (poseLabel == "MOUNTAIN") {
-      text("MOUNTAIN POSE", width / 4, height - 10);
-    } else if (poseLabel == "GODDESS") {
-      text("GODDESS POSE", width / 4, height - 10);
-    } else if (poseLabel == "GARLAND") {
-      text("GARLAND POSE", width / 4, height - 10);
-    } else if (poseLabel == "PLANK") {
-      text("PLANK POSE", width / 4, height - 10);
+      if (poseLabel == "MOUNTAIN") {
+        text("MOUNTAIN POSE", width / 4, height - 10);
+      } else if (poseLabel == "GODDESS") {
+        text("GODDESS POSE", width / 4, height - 10);
+      } else if (poseLabel == "GARLAND") {
+        text("GARLAND POSE", width / 4, height - 10);
+      } else if (poseLabel == "PLANK") {
+        text("PLANK POSE", width / 4, height - 10);
+      }
     }
     // else if (poseLabel == "COBRA") {
     //   text("COBRA", width/2, height/2);
 
     // }
-    else {
-      text("INCORRECT POSE", width / 4, height - 10);
-    }
   }
   selected_pose = posesDropdown.value;
 }
