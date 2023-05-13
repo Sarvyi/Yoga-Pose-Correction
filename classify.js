@@ -9,6 +9,8 @@ let selected_pose;
 let poseLabel;
 let poseNet;
 let knn;
+
+let count = {correct: 0, total: 0}; // [incorrect, got result called]
 const DATA_PATH = "./data.json";
 
 // let knee, hip, ankle, kneeFlexion, dorsiflexion, hipFlexion, shoulder, anKnee, sHip, trunkLean;
@@ -84,9 +86,17 @@ function classifyPose() {
 }
 
 function gotResult(error, results) {
+  
   if (results) {
     // console.log(results);
+
+    count.total++;
+
     poseLabel = pose_names[parseInt(results.label)];
+
+    if (posesDropdown.value == poseLabel){
+      count.correct++;
+    }
     classifyPose();
   }
 }
@@ -166,4 +176,13 @@ function draw() {
     // }
   }
   selected_pose = posesDropdown.value;
+}
+
+function end() {
+  // document.location.href = "http://localhost:5501";
+  console.log(count);
+  console.log("Accuracy: ",count.correct/count.total)*100;
+  count = { correct: 0, total: 0 };
+  video.stop();
+  video.remove();
 }
