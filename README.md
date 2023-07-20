@@ -1,5 +1,6 @@
 ## Yoga-Pose-Correction 
 👉 [Link to the Project](https://sarvyi.github.io/Yoga-Pose-Correction/) 🔗🌐 <br>
+👉 [Link to the Research paper](https://docs.google.com/document/d/e/2PACX-1vS1GsLqQJC-B7WuLUTy1KiT4-IGyqOC3Vj9R_BTXcNITbD8wlakO1bSbIkdibbTjl2X-m_avosWUC2a/pub) 🔗🌐 <br>
 <p>
 Yoga is practiced by people throughout. Many people are participating on their own, either by coaching one another or watching TV or videos. Beginners may find it difficult to recognize the erroneous components of their yoga poses on their own, though. A position correction approach is proposed for assessing yoga poses to support self-learning yoga. KNN is utilized to identify the yoga position, and the PoseNet model is used to detect body points. In order to initially recognize a yoga stance in many circumstances, including brightness level and distance of the yoga practitioner from the camera, the system uses multi-part detection using merely a camera. After that, it establishes how dissimilar the poses of an instructor and a user are. The model was successful in classifying the yoga pose with an overall accuracy of 83% in classifying the yoga pose even through a lightweight PoseNet model. The PoseNet model also helped in correcting that yoga pose through angle calculation. 
 </p>
